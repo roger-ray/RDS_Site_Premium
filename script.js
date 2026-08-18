@@ -1,0 +1,8 @@
+const menuBtn=document.querySelector('.menu-btn');
+const menu=document.querySelector('.menu');
+menuBtn?.addEventListener('click',()=>menu.classList.toggle('open'));
+document.querySelectorAll('.menu a').forEach(a=>a.addEventListener('click',()=>menu.classList.remove('open')));
+document.querySelectorAll('[data-service]').forEach(link=>link.addEventListener('click',()=>{const s=document.getElementById('servico');if(s)s.value=link.dataset.service;}));
+const form=document.getElementById('budgetForm');
+form?.addEventListener('submit',e=>{e.preventDefault();const nome=document.getElementById('nome').value.trim();const telefone=document.getElementById('telefone').value.trim();const cidade=document.getElementById('cidade').value.trim();const imovel=document.getElementById('imovel').value;const servico=document.getElementById('servico').value;const prazo=document.getElementById('prazo').value;const descricao=document.getElementById('descricao').value.trim();const mensagem=`Olá, RDS Serviços Integrados! Gostaria de solicitar um orçamento pelo site.\n\n*DADOS DO CLIENTE*\nNome: ${nome}\nWhatsApp: ${telefone}\nCidade: ${cidade}\nTipo de imóvel: ${imovel}\n\n*PROJETO*\nServiço: ${servico}\nQuando pretende realizar: ${prazo}\n\n*DESCRIÇÃO*\n${descricao}\n\nGostaria de saber mais sobre o orçamento e os próximos passos.`;window.open('https://wa.me/5567998811943?text='+encodeURIComponent(mensagem),'_blank');});
+const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting)entry.target.classList.add('visible')}),{threshold:.08});document.querySelectorAll('.service-card,.process-card,.gallery figure,.statement,.audience-grid div,.quote-form').forEach(el=>{el.classList.add('reveal');observer.observe(el)});
